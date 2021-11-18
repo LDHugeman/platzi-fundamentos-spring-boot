@@ -34,7 +34,8 @@ public class UserService {
     }
 
     public void delete(Long id) {
-        userRepository.delete(new User(id));
+        userRepository.deleteById(id);
+        //userRepository.delete(new User(id));
     }
 
     public User update(User newUser, Long id) {
@@ -44,6 +45,6 @@ public class UserService {
                     user.setBirthDate(newUser.getBirthDate());
                     user.setName(newUser.getName());
                     return userRepository.save(user);
-                }).orElse(null);
+                }).get();
     }
 }
