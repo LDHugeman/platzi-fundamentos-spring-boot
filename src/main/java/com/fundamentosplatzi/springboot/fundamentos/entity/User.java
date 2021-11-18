@@ -36,6 +36,9 @@ public class User {
         this.birthDate = birthDate;
     }
 
+    public User(Long id) {
+    }
+
     public Long getId() {
         return id;
     }
