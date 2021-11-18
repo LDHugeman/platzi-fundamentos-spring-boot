@@ -64,11 +64,15 @@ public class FundamentosApplication implements CommandLineRunner {
                 .descending())
                 .stream()
                 .forEach(user -> LOGGER.info("Usuario con método sort " + user));
+
+        userRepository.findByName("John").stream().forEach(user -> LOGGER.info("Usuario con query method " + user));
+        LOGGER.info("Usuario con query method findByEmailAndName"+ userRepository.findByEmailAndName("daniela@domain.com", "Daniela")
+                .orElseThrow(()->new RuntimeException("Usuario no encontrado")));
     }
 
     private void saveUsersInDataBase() {
         User user1 = new User("John", "john@domain.com", LocalDate.of(2021, 03, 20));
-        User user2 = new User("Julie", "julie@domain.com", LocalDate.of(2021, 05, 21));
+        User user2 = new User("John", "julie@domain.com", LocalDate.of(2021, 05, 21));
         User user3 = new User("Daniela", "daniela@domain.com", LocalDate.of(2021, 07, 21));
         User user4 = new User("user4", "user4@domain.com", LocalDate.of(2021, 07, 7));
         User user5 = new User("user5", "user5@domain.com", LocalDate.of(2021, 11, 11));
